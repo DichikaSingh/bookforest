@@ -115,15 +115,16 @@ body {
 #ads {
     background-image: url("img/lll.png");
     background-repeat: no-repeat;
-    background-position: top 25% right 0;
+    background-position: top 0 right 0;
     background-size: cover;
-    height: 100vh;
+    height: 130vh;
     width: 100%;
     padding: 0 80px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    margin-top: 100px;
 }
 
 #ads button{
