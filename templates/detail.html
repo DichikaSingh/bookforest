@@ -1,0 +1,54 @@
+{% include 'header.html' %}
+
+<section id="prodetail" class="section-p1">
+
+    <div class="single-pro-image">
+        <img src={{book.picture.url}} width="100%" id="MainImg" alt="">
+    </div>
+    <div class="single-pro-detail">
+        <h6>{{book.book_category}}/{{book.sub_category}}<h4>{{book.book_type}}</h4></h6>
+        <h5>entery date: {{ book.entry_date|date:"d-m-Y" }}</h5>
+        <h2>&#8377;{{book.price}}</h2>
+        <form id="payment-form" method="POST">
+            {% csrf_token %}
+            <button class="normal" > contact the seller</button>
+
+        </form>
+        <br>
+        {% if data %}
+        <button class="normal" id="rzp-button1"> pay 2 </button>
+        {% endif %}
+        <h4>Seller Address:</h4>
+        <span>Do Epic Shit is a book by Ankur Warikoo where he writes about all the failures
+            and successes he had in his life. He also reflects on the lessons he has learned the hard way to
+            help us be aware of those situations. You will find valuable lessons in this book that you can
+            use in your life
+        </span>
+        <h4>{{book.seller.info.phone_number}}</h4>
+    </div>
+
+    
+    
+    
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+    var options = {
+        "key": '{{data.key}}', // Enter the Key ID generated from the Dashboard
+        "amount": '{{data.amount}}', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "order_id": "{{data.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "callback_url": "{{data.callback_url}}",
+        
+       
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+    </script>
+
+</section>
+
+{% include 'footer.html' %}

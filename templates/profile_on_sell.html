@@ -1,0 +1,111 @@
+
+{% include 'header.html' %}
+
+<section id='profile'>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            Profile
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group">
+                        <a class="list-group-item black-text" href="/profile/">Profile</a>
+                        <a class="list-group-item black-text" href="/profile_on_sell/"><b>Your On Sell Books</b></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div id="booksTab" class="tab-pane fade show active">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <h1>Books</h1>
+                                        <hr><br><br>
+                                        <a href="{% url 'sell' %}">
+                                            <button type="button">Add Book</button>
+                                        </a>
+                                        <br><br>
+                                        
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Book Image</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Listing Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <form methode="POST" id="bookForm>
+                                                {% csrf_token %}
+                                            <tbody>
+                                                {% for book in books%}
+                                                <tr>
+                                                    <td><img src="{{ book.picture.url }}" alt="" style="width: 40px; height: 40px;"></td>
+                                                    <td>{{book.book_name}}</td>
+                                                    <td>{{ book.entry_date|date:"d-m-Y" }}</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                                <div class="label">
+                                                                    <h6>
+                                                                        <span id="inactiveLabel{{ book.id }}">Off Sell</span>
+                                                                        <span id="activeLabel{{ book.id }}">On Sell</span>
+                                                                    </h6>
+                                                                </div>
+                                                                <label class="switch">
+                                                                    <input type="checkbox" id="toggleSwitch{{ book.id }}" name="active" value="True" class="toggle-switch" data-book-id="{{ book.id }}"
+                                                                    {% if book.on_sell %}checked{% endif %}>>
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                                <a href="/delete_book/{{book.id}}" class="btn btn-danger">Delete</a>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                <!-- Add more rows if needed -->
+                                            </tbody>
+                                            </form>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- For toggle switch  -->
+    <script>
+        $(document).ready(function () {
+            $('.toggle-switch').change(function () {
+                var bookId = $(this).data('book-id');
+                var isChecked = $(this).prop('checked');
+                
+                // Make an AJAX request to update the backend
+                $.ajax({
+                    url: '/update_on_sell/' + bookId + '/',
+                    type: 'GET',
+                    data: {
+                        on_sell: isChecked
+                        
+                    },
+                    success: function (response) {
+                        console.log('Backend updated successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error updating backend:', error);
+                    }
+                });
+            });
+        });
+    </script>
+    
+</section>
+{% include 'footer.html' %}

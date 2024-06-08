@@ -1,0 +1,38 @@
+{% include 'header.html' %}
+
+<section id="page-header">
+            
+    <h2>#Padhega Bharat</h2>
+    
+    <p>padhega Bharat tahi to badhega Bharat</p>
+    
+</section>
+
+<section id="product1" class="section-p1" >
+    
+    <div class="pro-container">
+        {% for book in books %}
+        <a href='/detail/{{book.id}}'>
+        <div class="pro">
+            <img src={{book.picture.url}} alt="">
+            <div class="dis">
+                <span>{{book.id}}</span>
+                <h5>{{book.book_name}}</h5>
+                <h4> &#8377;{{book.price}}</h4>
+            </div>
+            <a href='/detail/{{book.id}}'><i class="fa-solid fa-cart-shopping cart"></i></a>
+        </div>
+        </a>
+        {% endfor%}
+    </div>    
+</section>
+
+<section id="pagination" class="section-p1">
+
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#"><i class="fa-solid fa-right-long"></i></a>
+</section>
+
+
+{% include 'footer.html' %}

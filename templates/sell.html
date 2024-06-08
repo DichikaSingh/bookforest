@@ -1,0 +1,76 @@
+{% include 'header.html' %}
+
+<section id="page-header">
+            
+    <h2>#Paega India</h2>
+    
+    <p>padhega inda tahi to badhega india</p>
+    
+</section>
+
+<section id="sell" class="section-p1">
+    <form method="POST" enctype= "multipart/form-data">
+        {% csrf_token %}
+    <div class="radio">
+        
+            <input type="radio" id="donate" name="donate" value="True">
+            <label for="donate">Donate Your Book</label>
+            <input type="radio" id="sell" name="donate"  value="False">
+            <label for="sell">Sell Your Book</label>
+        
+    </div>
+    <div class="opt">
+        <label for="bookname"> Book Name:</label>
+        <input type="text" id="bookname"  name="bookname" required>
+
+        <div>
+            <label for="bookType">Book Type:</label>
+            <select id="bookType" name="bookType" required>
+                <option value="old">Old</option>
+                <option value="new">New</option>
+            </select>
+        </div>
+        
+        <div id= "Category">
+            <label for="bookCategory">Book Category:</label>
+            <select id="bookCategory" name="bookCategory" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="School Textbooks">School Textbooks</option>
+                <option value="Higher Education Textbooks">Higher Education Textbooks</option>
+                <option value="Exam Preparation Books">Exam Preparation Books</option>
+                <option value="Novel Books">Novel Books</option>
+            </select>
+        </div>
+        <div id="sub-Category">
+        <label for="subCategory">Sub-Category:</label>
+        <select id="subCategory" name="subCategory" required>
+        </select>
+        </div>
+       
+        <label for="price">Selling Price:</label>
+        <input type="text" id="price"  name="price" required>
+        
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" placeholder="eg:123456789" name="phone_number">
+
+    
+    </div>
+    <div class ='bookimage'>
+        <label for="book_image">Book Image:</label>
+        <input type="file" id="book_image" name="book_image" accept="image/png, image/jpeg" />
+    </div>
+
+    <h4> You have to pay 2 to list your book on our website</h4>
+    <div class="next">
+        <button type="submit">Pay<i class="fa-solid fa-indian-rupee-sign"></i>  2</button>
+
+    </div>
+    
+
+
+    </form>
+
+</section>
+
+
+{% include 'footer.html' %}

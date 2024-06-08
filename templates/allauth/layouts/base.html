@@ -1,0 +1,58 @@
+{% load i18n %}
+{% include 'header.html' %}
+
+<section>
+        <title>
+            {% block head_title %}
+            {% endblock head_title %}
+        </title>
+        {% block extra_head %}
+        {% endblock extra_head %}
+    </head>
+    <body>
+        <section id='log'>
+            <div class='login-container'>
+            <div class='msg-menu'>
+                {% block body %}
+                    {% if messages %}
+                        <div >
+                            <strong>{% trans "Messages:" %}</strong>
+                            <ul>
+                                {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="menu">
+                        <strong>{% trans "Menu:" %}</strong>
+                        <ul class="horizontal-list">
+                            {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'account_email' %}">{% trans "Change Email" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+                        </li>
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                </div>
+                    {% block content %}
+                    {% endblock content %}
+                {% endblock body %}
+            
+                {% block extra_body %}
+                {% endblock extra_body %}
+            </div>
+        </section>
+    </body>
+</section>
+{% include 'footer.html' %}

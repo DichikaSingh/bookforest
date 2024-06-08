@@ -1,0 +1,54 @@
+.messages{
+    width: 300px;
+    padding: 5px;
+
+
+}
+
+
+/* Style for the alert container */
+.alert {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+/* Danger alert */
+.alert.error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* Success alert */
+.alert.success {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+/* Info alert */
+.alert.info {
+    background-color: #2196F3; /* Blue */
+    color: white;
+}
+
+/* Warning alert */
+.alert.warning {
+    background-color: #ff9800; /* Orange */
+    color: white;
+}
+
+/* Close button inside the alert */
+.closebtn {
+    margin-left: 15px;
+    color: inherit;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 10px;
+    cursor: pointer;
+}
+
+/* When hovering over the close button */
+.closebtn:hover {
+    color: black;
+}

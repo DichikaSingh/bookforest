@@ -1,0 +1,55 @@
+{% include 'header.html' %}
+
+    <!-- Main content of the homepage -->
+    
+    <section id="ads">
+        <h4>social service</h4>
+        <h2>#Help</h2>
+        <h1>donate your book</h2>
+        <p>padhega inda tahi to badhega india</p>
+        <button>Donate now</button>
+    </section>
+    <section id="feature" class="section-p1">
+        <a href="/shop/">
+            <div class="fe-box"> 
+                <img src="static/img/features/f1.png" alt="">
+                <h6>Buy Book</h6>
+            </div>
+        </a>
+        <a href="#">
+            <div class="fe-box"> 
+                <img src="static/img/features/f2.jpg" alt="">
+                <h6>Donate Book</h6>
+            </div>
+        </a>
+        <a href="/sell/">
+            <div class="fe-box"> 
+                <img src="static/img/features/f3.png" alt="">
+                <h6>Sell Book</h6>
+            </div>
+        </a>
+        
+    </section>
+    <section id="product1" class="section-p1" >
+        <h2>New product</h2>
+        <p>new added product</p>
+        <div class="pro-container">
+            {% for book in books %}
+            <a href='/detail/{{book.id}}'>
+            <div class="pro">
+                <img src={{book.picture.url}} alt="">
+                <div class="dis">
+                    <span>{{book.id}}</span>
+                    <h5>{{book.book_name}}</h5>
+                    <h4> &#8377;{{book.price}}</h4>
+                </div>
+                <a href='/detail/{{book.id}}'><i class="fa-solid fa-cart-shopping cart"></i></a>
+            </div>
+            </a>
+            {% endfor%}
+        </div>    
+    </section>
+
+
+    <!-- Include the footer -->
+{% include 'footer.html' %}
